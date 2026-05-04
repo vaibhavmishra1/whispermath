@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/*.jsonl
+data/generated/*.jsonl
+data/generated/*.json
+data/compiled/*.jsonl
+data/compiled/*.json
+data/batches/

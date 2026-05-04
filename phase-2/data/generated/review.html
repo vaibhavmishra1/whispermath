@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhisperMath Phase 2 Pair Review</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --accent: #0f766e;
+      --accent-soft: #e6f4f1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto 56px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .summary {
+      color: var(--muted);
+      margin: 0;
+      max-width: 760px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 18px 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .eyebrow {
+      margin: 0 0 2px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .rendered {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 16px;
+      margin: 16px 0;
+      min-height: 72px;
+    }
+
+    details {
+      margin: 12px 0 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #101828;
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      border-top: 1px solid var(--line);
+      padding: 10px 8px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    th:first-child,
+    td:first-child {
+      width: 120px;
+    }
+
+    th:last-child,
+    td:last-child {
+      width: 260px;
+    }
+
+    .style {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .notes {
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 20px, 1120px);
+        margin-top: 20px;
+      }
+
+      table, thead, tbody, tr, th, td {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        border-top: 1px solid var(--line);
+        padding: 10px 0;
+      }
+
+      td {
+        border-top: 0;
+        padding: 4px 0;
+      }
+
+      th:first-child,
+      td:first-child,
+      th:last-child,
+      td:last-child {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>WhisperMath Phase 2 Pair Review</h1>
+      <p class="summary">Rendered review of 9 unique LaTeX formulas and 38 spoken variants. Use this to decide whether a formula is actually suitable for spoken-math training.</p>
+    </header>
+    
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 1</p>
+                  <h2>Source row 34</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                \\sum_{j \\neq i} (c_j + d_j c_i) T^j =0 .
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>\sum_{j \neq i} (c_j + d_j c_i) T^j =0 .</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>sum over j not equal to i of parentheses c sub j plus d sub j times c sub i times t to the j equals zero</td>
+                  <td class="notes">states the index condition and grouping</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>sum for j different from i of c j plus d j c i all times t to the j equals zero</td>
+                  <td class="notes">natural speech with compact grouping</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">teacher</span></td>
+                  <td>sum with j not equal to i of c j plus d j c i times t to the j equals zero</td>
+                  <td class="notes">clean, classroom-style ordering</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">formal</span></td>
+                  <td>the summation over j where j is not i of the quantity c j plus d j times c i times t to the j equals zero</td>
+                  <td class="notes">adds a bit of explicit phrasing</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 2</p>
+                  <h2>Source row 66</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                \\Delta^t U(a)=U(a\\cos(2\\pi t)+ia\\sin(2\\pi t))\\Delta^t
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>\Delta^t U(a)=U(a\cos(2\pi t)+ia\sin(2\pi t))\Delta^t</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>delta to the t u of a equals u of a cosine of two pi t plus i a sine of two pi t times delta to the t</td>
+                  <td class="notes">spells out powers and trig terms</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>delta superscript t of u at a equals u of a cos of two pi t plus i a sin of two pi t times delta superscript t</td>
+                  <td class="notes">natural shorthand for superscripts</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">teacher</span></td>
+                  <td>delta t u of a is equal to u of a times cos two pi t plus i a times sin two pi t all times delta t</td>
+                  <td class="notes">clarifies multiplication by repeating delta t</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>delta to the t acting on u of a equals u of a cosine of two pi t plus i a sine of two pi t times delta to the t</td>
+                  <td class="notes">includes verbal cue for operator action</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>delta superscript t of u a equals u of a cosine two pi t plus i a sine two pi t times delta superscript t</td>
+                  <td class="notes">compact function naming</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 3</p>
+                  <h2>Source row 86</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                f( T(z)) =T'(z) [ f(z) -\\frac{\\delta w}{\\epsilon w}(z-\\alpha )] .
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>f( T(z)) =T&#x27;(z) [ f(z) -\frac{\delta w}{\epsilon w}(z-\alpha )] .</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>f of t of z equals t prime of z times f of z minus delta w over epsilon w times z minus alpha</td>
+                  <td class="notes">natural read with key tokens</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>f parentheses t parentheses z closes equals t dash of z times bracket f of z minus the fraction delta w over epsilon w times the quantity z minus alpha</td>
+                  <td class="notes">mentions brackets and dash</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">teacher</span></td>
+                  <td>f of t of z is equal to t prime at z times f of z minus delta w divided by epsilon w times z minus alpha</td>
+                  <td class="notes">more formal structure</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>f of t of z equals t prime of z times f of z minus open bracket delta w over epsilon w times z minus alpha close bracket</td>
+                  <td class="notes">keeps grouping verbal</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 4</p>
+                  <h2>Source row 122</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                A_{\\alpha \\beta} = \\theta_\\alpha \\theta_\\beta
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>A_{\alpha \beta} = \theta_\alpha \theta_\beta</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>a sub alpha beta equals theta sub alpha times theta sub beta</td>
+                  <td class="notes">subscripts read explicitly</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>a alpha beta equals theta alpha times theta beta</td>
+                  <td class="notes">compact subscript speech</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">formal</span></td>
+                  <td>a with alpha beta subscripts equals theta with alpha subscript times theta with beta subscript</td>
+                  <td class="notes">clear identification of indices</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>a to the alpha beta equals theta to the alpha times theta to the beta</td>
+                  <td class="notes">common informal exponent-like phrasing for subscripts</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 5</p>
+                  <h2>Source row 183</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                F_c = m_{\\!_J} \\frac{c^2}{R}
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>F_c = m_{\!_J} \frac{c^2}{R}</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>f sub c equals m j times c squared over r</td>
+                  <td class="notes">uses sub c and sub j</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>f c equals m j c squared divided by r</td>
+                  <td class="notes">compact division phrasing</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">formal</span></td>
+                  <td>f with sub c equals m with sub j times c squared over r</td>
+                  <td class="notes">spells out subs</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>f sub c is m sub j times c to the power of two over r</td>
+                  <td class="notes">power of two stated explicitly</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 6</p>
+                  <h2>Source row 206</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                dy^I dy^J \\delta_{IJ} = dr^2 + r^2 d\\Omega_{7}^2
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>dy^I dy^J \delta_{IJ} = dr^2 + r^2 d\Omega_{7}^2</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>d y i times d y j times delta i j equals d r squared plus r squared d omega seven squared</td>
+                  <td class="notes">indices i and j and delta i j stated</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>dy i dy j delta i j equals dr squared plus r squared d omega sub seven squared</td>
+                  <td class="notes">speaks seven as sub omega</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>dy i dy j contracted with delta i j is equal to dr squared plus r squared times d omega seven squared</td>
+                  <td class="notes">natural phrase for contraction</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">teacher</span></td>
+                  <td>dy i dy j times the delta with i and j equals dr squared plus r squared times d omega seven squared</td>
+                  <td class="notes">slightly explanatory wording</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>dy to the i times dy to the j times delta i j equals dr squared plus r squared d omega seven squared</td>
+                  <td class="notes">power style for dy superscripts</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 7</p>
+                  <h2>Source row 246</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                L^{(0)} dt=a^{(0)}(\\omega^{(0)})-V^{(0)}(\\omega^{(0)}) dt
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>L^{(0)} dt=a^{(0)}(\omega^{(0)})-V^{(0)}(\omega^{(0)}) dt</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>l superscript zero times d t equals a superscript zero of omega superscript zero minus v superscript zero of omega superscript zero times d t</td>
+                  <td class="notes">spells superscripts and functional dependence</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>l to the zero of d t equals a to the zero of omega to the zero minus v to the zero of omega to the zero times d t</td>
+                  <td class="notes">more natural but keeps the structure</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>l parentheses zero times dt is a parentheses zero of omega parentheses zero minus v parentheses zero of omega parentheses zero dt</td>
+                  <td class="notes">uses parenthetical wording for superscripts</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">compact</span></td>
+                  <td>l zero times d t equals a zero of omega zero minus v zero of omega zero d t</td>
+                  <td class="notes">shorter, still unambiguous</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 8</p>
+                  <h2>Source row 263</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                S^{-1}_{ab}=- \\frac{1}{2} \\epsilon_{ab}
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>S^{-1}_{ab}=- \frac{1}{2} \epsilon_{ab}</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>s inverse with subscript a b equals negative one over two epsilon a b</td>
+                  <td class="notes">spells out subscripts and fraction</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>s subscript a b inverse equals minus one over two epsilon a b</td>
+                  <td class="notes">natural ordering with common wording</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>s inverse a b equals negative one half times epsilon a b</td>
+                  <td class="notes">uses one half wording</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>s to the power minus one with indices a and b equals minus one over two epsilon a b</td>
+                  <td class="notes">more mathematical phrasing</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+            <section class="card">
+              <div class="card-header">
+                <div>
+                  <p class="eyebrow">Formula 9</p>
+                  <h2>Source row 313</h2>
+                </div>
+              </div>
+
+              <div class="rendered">
+                \[
+                v(u) = -u^2-u^{-(1+\\alpha)n+2} .
+                \]
+              </div>
+
+              <details>
+                <summary>Raw LaTeX</summary>
+                <pre>v(u) = -u^2-u^{-(1+\alpha)n+2} .</pre>
+              </details>
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Style</th>
+                    <th>Spoken variant</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                <tr>
+                  <td><span class="style">casual</span></td>
+                  <td>v of u equals negative u squared minus u to the negative one plus alpha times n plus two</td>
+                  <td class="notes">common way to say the exponent</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">explicit</span></td>
+                  <td>v of u equals negative u squared minus u raised to the power of negative one plus alpha times n plus two</td>
+                  <td class="notes">more literal exponent wording</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">formal</span></td>
+                  <td>v at u is equal to negative u squared minus u to the power of negative one plus alpha n plus two</td>
+                  <td class="notes">treats products as implicit</td>
+                </tr>
+                
+                <tr>
+                  <td><span class="style">teacher</span></td>
+                  <td>v of u equals minus u squared minus u to the negative quantity of one plus alpha times n plus two</td>
+                  <td class="notes">separates the minus sign into the exponent phrase</td>
+                </tr>
+                
+                </tbody>
+              </table>
+            </section>
+            
+  </main>
+</body>
+</html>

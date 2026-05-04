@@ -1,0 +1,29 @@
+dataset_id: vibhuiitj/whispermath-input-output
+model_name: google/byt5-small
+output_dir: models/byt5-small-whispermath
+seed: 7
+
+max_source_length: 512
+max_target_length: 512
+
+validation_ratio: 0.01
+test_ratio: 0.01
+
+num_train_epochs: 1
+learning_rate: 0.0003
+weight_decay: 0.01
+warmup_ratio: 0.03
+
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 16
+
+logging_steps: 25
+eval_steps: 500
+save_steps: 500
+save_total_limit: 2
+
+predict_with_generate: false
+generation_max_length: 512
+generation_num_beams: 1
+

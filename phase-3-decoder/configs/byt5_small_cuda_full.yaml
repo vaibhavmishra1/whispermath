@@ -1,0 +1,37 @@
+dataset_id: vibhuiitj/whispermath-input-output
+model_name: google/byt5-small
+output_dir: models/byt5-small-whispermath-cuda
+seed: 7
+
+max_source_length: 512
+max_target_length: 512
+
+validation_ratio: 0.01
+test_ratio: 0.01
+
+num_train_epochs: 2
+learning_rate: 0.0003
+weight_decay: 0.01
+warmup_ratio: 0.03
+
+# Good starting point for a 24GB CUDA GPU.
+# If you get OOM, reduce per_device_train_batch_size to 2 or enable gradient_checkpointing.
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 4
+
+fp16: true
+bf16: false
+gradient_checkpointing: false
+optim: adamw_torch
+dataloader_num_workers: 4
+
+logging_steps: 25
+eval_steps: 1000
+save_steps: 1000
+save_total_limit: 3
+
+predict_with_generate: false
+generation_max_length: 512
+generation_num_beams: 1
+
