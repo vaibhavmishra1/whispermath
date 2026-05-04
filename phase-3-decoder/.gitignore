@@ -5,3 +5,5 @@ models/
 outputs/
 wandb/
 runs/
+*.venv/
+.venv/*

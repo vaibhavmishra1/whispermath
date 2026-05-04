@@ -108,6 +108,35 @@ python src/train_byt5.py \
   --bf16
 ```
 
+## A100 80GB Run
+
+For a single A100 80GB, use the dedicated config:
+
+```bash
+python src/train_byt5.py --config configs/byt5_small_a100_80gb.yaml
+```
+
+This uses:
+
+```text
+epochs: 3
+learning rate: 1e-4
+bf16: true
+per-device batch size: 16
+gradient accumulation: 2
+effective batch size: 32
+max source/target length: 512
+```
+
+If memory usage is low, try:
+
+```bash
+python src/train_byt5.py \
+  --config configs/byt5_small_a100_80gb.yaml \
+  --per-device-train-batch-size 32 \
+  --gradient-accumulation-steps 1
+```
+
 ## Evaluate
 
 ```bash
