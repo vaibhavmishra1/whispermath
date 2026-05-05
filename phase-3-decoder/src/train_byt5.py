@@ -110,7 +110,7 @@ def training_args_kwargs(config: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Fine-tune google/byt5-small for WhisperMath input_text -> output_text.")
+    parser = argparse.ArgumentParser(description="Fine-tune a ByT5 model for WhisperMath input_text -> output_text.")
     parser.add_argument("--config", type=Path, default=Path("configs/byt5_small.yaml"))
     parser.add_argument("--dataset-id")
     parser.add_argument("--model-name")

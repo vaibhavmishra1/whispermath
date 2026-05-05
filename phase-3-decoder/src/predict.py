@@ -21,7 +21,9 @@ def main() -> None:
     parser.add_argument("--model", default="models/byt5-small-whispermath")
     parser.add_argument("--max-source-length", type=int, default=512)
     parser.add_argument("--max-new-tokens", type=int, default=256)
-    parser.add_argument("--num-beams", type=int, default=1)
+    parser.add_argument("--num-beams", type=int, default=4)
+    parser.add_argument("--repetition-penalty", type=float, default=1.25)
+    parser.add_argument("--no-repeat-ngram-size", type=int, default=4)
     args = parser.parse_args()
 
     input_text = " ".join(args.text).strip()
@@ -45,6 +47,9 @@ def main() -> None:
             **encoded,
             max_new_tokens=args.max_new_tokens,
             num_beams=args.num_beams,
+            repetition_penalty=args.repetition_penalty,
+            no_repeat_ngram_size=args.no_repeat_ngram_size,
+            early_stopping=args.num_beams > 1,
         )
 
     print(tokenizer.decode(output_ids[0], skip_special_tokens=True))

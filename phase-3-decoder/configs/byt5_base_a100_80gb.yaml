@@ -1,0 +1,36 @@
+dataset_id: vibhuiitj/whispermath-input-output
+model_name: google/byt5-base
+output_dir: models/byt5-base-whispermath-a100
+seed: 7
+
+max_source_length: 512
+max_target_length: 512
+
+validation_ratio: 0.01
+test_ratio: 0.01
+
+# Full-capacity run for a single A100 80GB.
+# This keeps effective batch size equal to the small-model run while lowering LR.
+num_train_epochs: 3
+learning_rate: 0.00005
+weight_decay: 0.01
+warmup_ratio: 0.03
+
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 8
+gradient_accumulation_steps: 4
+
+fp16: false
+bf16: true
+gradient_checkpointing: false
+optim: adamw_torch
+dataloader_num_workers: 8
+
+logging_steps: 25
+eval_steps: 500
+save_steps: 500
+save_total_limit: 4
+
+predict_with_generate: false
+generation_max_length: 512
+generation_num_beams: 1
