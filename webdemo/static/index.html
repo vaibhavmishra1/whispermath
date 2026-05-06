@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhisperMath Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+      crossorigin="anonymous"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f3ea;
+        --panel: #fffaf0;
+        --ink: #18212f;
+        --muted: #697386;
+        --line: #d8d1c2;
+        --accent: #0f766e;
+        --accent-dark: #115e59;
+        --danger: #b42318;
+        --code: #eef7f5;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(1080px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+
+      header {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 0.96;
+        font-weight: 780;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        max-width: 720px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+        gap: 18px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 8px;
+        padding: 18px;
+      }
+
+      .controls {
+        display: grid;
+        gap: 16px;
+      }
+
+      .record-button {
+        width: 100%;
+        min-height: 72px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: white;
+        font-size: 18px;
+        font-weight: 720;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+
+      .record-button:hover {
+        background: var(--accent-dark);
+      }
+
+      .record-button:active {
+        transform: translateY(1px);
+      }
+
+      .record-button.recording {
+        background: var(--danger);
+      }
+
+      .record-button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      .status {
+        min-height: 24px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      audio {
+        width: 100%;
+      }
+
+      .settings {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: white;
+        color: var(--ink);
+        padding: 10px 11px;
+        font: inherit;
+      }
+
+      .results {
+        display: grid;
+        gap: 14px;
+      }
+
+      .result-block {
+        display: grid;
+        gap: 8px;
+      }
+
+      .result-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .result-title {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .output {
+        min-height: 72px;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+        padding: 14px;
+        line-height: 1.5;
+      }
+
+      textarea.output {
+        width: 100%;
+        resize: vertical;
+        color: var(--ink);
+        font: inherit;
+      }
+
+      .math-output {
+        background: var(--code);
+        min-height: 128px;
+        display: grid;
+        align-items: center;
+        font-size: 22px;
+      }
+
+      .raw-output {
+        min-height: 56px;
+        background: #f8fafc;
+        color: var(--muted);
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 14px;
+      }
+
+      .examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: white;
+        color: var(--ink);
+        padding: 8px 10px;
+        font-size: 13px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .chip:hover {
+        border-color: var(--accent);
+      }
+
+      .secondary-button {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: white;
+        color: var(--ink);
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .secondary-button:hover {
+        border-color: var(--accent);
+      }
+
+      .secondary-button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      @media (max-width: 820px) {
+        main {
+          width: min(100% - 24px, 720px);
+          padding: 28px 0;
+        }
+
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>WhisperMath</h1>
+        <p class="subtitle">
+          Record spoken math. Whisper transcribes the audio, then your ByT5
+          checkpoint converts the transcript into math notation.
+        </p>
+      </header>
+
+      <section class="layout">
+        <div class="panel controls">
+          <button id="recordButton" class="record-button">Start Recording</button>
+          <div id="status" class="status">Loading demo status...</div>
+          <audio id="player" controls hidden></audio>
+
+          <div class="settings">
+            <label>
+              Beams
+              <input id="numBeams" type="number" min="1" max="8" value="4" />
+            </label>
+            <label>
+              Max new tokens
+              <input id="maxNewTokens" type="number" min="32" max="1024" value="256" />
+            </label>
+          </div>
+
+          <div class="examples" aria-label="Example prompts">
+            <button class="chip" type="button" data-example="x squared minus y squared equals four">
+              x squared minus y squared equals four
+            </button>
+            <button class="chip" type="button" data-example="integral from zero to pi of sine x dx">
+              integral from zero to pi of sine x dx
+            </button>
+            <button class="chip" type="button" data-example="limit as x tends to zero of sine x over x">
+              limit as x tends to zero of sine x over x
+            </button>
+          </div>
+        </div>
+
+        <div class="panel results">
+          <div class="result-block">
+            <div class="result-header">
+              <div class="result-title">Whisper Transcript</div>
+              <button id="decodeTranscriptButton" class="secondary-button" type="button">
+                Decode Transcript
+              </button>
+            </div>
+            <textarea
+              id="transcript"
+              class="output"
+              rows="5"
+              placeholder="Record a short math phrase to begin."
+            ></textarea>
+          </div>
+
+          <div class="result-block">
+            <div class="result-title">Rendered Math</div>
+            <div id="mathOutput" class="output math-output"></div>
+          </div>
+
+          <div class="result-block">
+            <div class="result-title">Raw ByT5 Output</div>
+            <div id="rawMathOutput" class="output raw-output"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const recordButton = document.getElementById("recordButton");
+      const statusEl = document.getElementById("status");
+      const player = document.getElementById("player");
+      const transcriptEl = document.getElementById("transcript");
+      const mathOutputEl = document.getElementById("mathOutput");
+      const rawMathOutputEl = document.getElementById("rawMathOutput");
+      const decodeTranscriptButton = document.getElementById("decodeTranscriptButton");
+      const numBeamsEl = document.getElementById("numBeams");
+      const maxNewTokensEl = document.getElementById("maxNewTokens");
+      const exampleButtons = document.querySelectorAll("[data-example]");
+
+      let recorder = null;
+      let chunks = [];
+      let stream = null;
+
+      async function refreshHealth() {
+        try {
+          const response = await fetch("/api/health");
+          const health = await response.json();
+          statusEl.textContent = `Ready: ${health.whisper_model} + ${health.decoder_model} on ${health.decoder_device}`;
+        } catch {
+          statusEl.textContent = "Backend is starting or unreachable.";
+        }
+      }
+
+      function preferredMimeType() {
+        const candidates = [
+          "audio/webm;codecs=opus",
+          "audio/webm",
+          "audio/mp4",
+          "audio/wav",
+        ];
+        return candidates.find((type) => MediaRecorder.isTypeSupported(type)) || "";
+      }
+
+      function renderMath(raw) {
+        const value = (raw || "").trim();
+        rawMathOutputEl.textContent = value || "(no raw output)";
+        mathOutputEl.textContent = "";
+
+        if (!value) {
+          mathOutputEl.textContent = "(no math output)";
+          return;
+        }
+
+        if (!window.katex) {
+          mathOutputEl.textContent = value;
+          return;
+        }
+
+        const hasDelimiters = /\$\$?|\\\(|\\\[/.test(value);
+        const looksLikeMath = /\\[a-zA-Z]+|[_^{}=+\-*/]/.test(value);
+
+        try {
+          if (hasDelimiters && window.renderMathInElement) {
+            mathOutputEl.textContent = value;
+            window.renderMathInElement(mathOutputEl, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+              throwOnError: false,
+            });
+            return;
+          }
+
+          if (looksLikeMath) {
+            window.katex.render(value, mathOutputEl, {
+              displayMode: true,
+              throwOnError: false,
+            });
+            return;
+          }
+
+          mathOutputEl.textContent = value;
+        } catch {
+          mathOutputEl.textContent = value;
+        }
+      }
+
+      async function startRecording() {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        chunks = [];
+        const mimeType = preferredMimeType();
+        recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+        recorder.addEventListener("dataavailable", (event) => {
+          if (event.data.size > 0) chunks.push(event.data);
+        });
+        recorder.addEventListener("stop", handleStop);
+        recorder.start();
+        recordButton.textContent = "Stop Recording";
+        recordButton.classList.add("recording");
+        statusEl.textContent = "Recording...";
+      }
+
+      async function handleStop() {
+        const blobType = recorder.mimeType || "audio/webm";
+        const blob = new Blob(chunks, { type: blobType });
+        stream.getTracks().forEach((track) => track.stop());
+        player.src = URL.createObjectURL(blob);
+        player.hidden = false;
+
+        recordButton.disabled = true;
+        decodeTranscriptButton.disabled = true;
+        statusEl.textContent = "Transcribing and decoding...";
+        transcriptEl.value = "";
+        mathOutputEl.textContent = "";
+        rawMathOutputEl.textContent = "";
+
+        const form = new FormData();
+        const extension = blobType.includes("mp4")
+          ? "mp4"
+          : blobType.includes("wav")
+            ? "wav"
+            : "webm";
+        form.append("audio", blob, `recording.${extension}`);
+        form.append("num_beams", numBeamsEl.value);
+        form.append("max_new_tokens", maxNewTokensEl.value);
+
+        try {
+          const response = await fetch("/api/transcribe", {
+            method: "POST",
+            body: form,
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.detail || "Request failed.");
+
+          transcriptEl.value = data.transcript || "";
+          renderMath(data.math_text);
+          statusEl.textContent = "Done.";
+        } catch (error) {
+          statusEl.textContent = error.message;
+          mathOutputEl.textContent = "";
+          rawMathOutputEl.textContent = "";
+        } finally {
+          recordButton.disabled = false;
+          decodeTranscriptButton.disabled = false;
+        }
+      }
+
+      async function decodeText(text) {
+        recordButton.disabled = true;
+        decodeTranscriptButton.disabled = true;
+        statusEl.textContent = "Decoding example...";
+        transcriptEl.value = text;
+        mathOutputEl.textContent = "";
+        rawMathOutputEl.textContent = "";
+
+        try {
+          const response = await fetch("/api/decode", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text,
+              num_beams: Number(numBeamsEl.value),
+              max_new_tokens: Number(maxNewTokensEl.value),
+            }),
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.detail || "Request failed.");
+
+          renderMath(data.math_text);
+          statusEl.textContent = "Done.";
+        } catch (error) {
+          statusEl.textContent = error.message;
+        } finally {
+          recordButton.disabled = false;
+          decodeTranscriptButton.disabled = false;
+        }
+      }
+
+      recordButton.addEventListener("click", async () => {
+        if (recorder && recorder.state === "recording") {
+          recorder.stop();
+          recordButton.textContent = "Start Recording";
+          recordButton.classList.remove("recording");
+          return;
+        }
+
+        try {
+          await startRecording();
+        } catch (error) {
+          statusEl.textContent = error.message || "Microphone permission failed.";
+        }
+      });
+
+      exampleButtons.forEach((button) => {
+        button.addEventListener("click", () => decodeText(button.dataset.example));
+      });
+
+      decodeTranscriptButton.addEventListener("click", () => {
+        const text = transcriptEl.value.trim();
+        if (text) decodeText(text);
+      });
+
+      refreshHealth();
+    </script>
+  </body>
+</html>
